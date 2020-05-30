@@ -1,0 +1,2 @@
+cargo: 122 car 100 Very old Gruz: 1000 ship
+cargo: 50 spoons 1323 Golden Gruz: 1000 ship
