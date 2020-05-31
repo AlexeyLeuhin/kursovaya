@@ -23,6 +23,7 @@ int main()
       }
       if (a == -2) {
         std::cout << "Выбран неверный пункт меню, попробуйте еще раз\n";
+        system("pause");
         continue;
       }  
     }

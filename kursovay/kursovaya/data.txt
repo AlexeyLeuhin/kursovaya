@@ -1,18 +1,3 @@
-cargo: 12345 spoons 12345 asdfsdd assdfGruz: 123345 ship
-
-cargo: 1234 spoons 12344 shipGruz: 100000 ship
-
-cargo: 1234 spoons 12345 alsdjf aslfjGruz: 10000 ship
-
-cargo: 1234 cars 12345 hello worldGruz: 10000 ship
-
-cargo: 1111 niggas 1 black menGruz: 100000 ship
-
-cargo: 2222 cars 12345 hello worldGruz: 10000 ship
-
-cargo: 12345 cars 123456 asdk asdfkjGruz: 10000 ship
-
-cargo: 12345 cars 1234556 supercarsGruz: 10000 ship
-
-cargo: 1234567 cars 1234567 hello worldGruz: 10000 ship
-
+cargo: 12 type 10 comment  Gruz: 1234 ship
+cargo: 12 type1 50 comment2  Gruz: 0 123
+cargo: 12 type 20 comm Gruz: 1234 delivery

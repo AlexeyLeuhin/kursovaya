@@ -61,8 +61,8 @@ std::string toString(const Information& inf) {
   result += std::to_string(inf.cargo.weight);
   result += " " + inf.cargo.type + " ";
   result += std::to_string( inf.cargo.price);
-  result += " " + inf.cargo.comment + "Gruz: ";
-  result += std::to_string(inf.distance) + " " + inf.type_of_delivering + "\n";
+  result += " " + inf.cargo.comment + " Gruz: ";
+  result += std::to_string(inf.distance) + " " + inf.type_of_delivering + " "+ std::to_string(inf.full_price)+ " " + "\n";
   return result;
 }
 
@@ -71,7 +71,8 @@ void printTabled(const Information& inf) {
   std::cout << std::setw(10) << std::left << inf.cargo.weight
              <<"| "<< std::setw(12) <<inf.cargo.type<<"| "
               << std::setw(8) <<inf.cargo.price<<"| "
-              << std::setw(15) <<inf.cargo.comment<< "| "<< std::setw(11) <<inf.distance<<"| "<< inf.type_of_delivering<<"\n";
+              << std::setw(20) <<inf.cargo.comment<< "| "<< std::setw(11) <<inf.distance<<"| "
+              << std::setw(15)<< inf.type_of_delivering <<"| "<< inf.full_price<<"\n";
 }
 
 
@@ -84,8 +85,9 @@ void appendObject(std::vector<Information>& data, bool& file_was_opened, std::st
     Information tmp;
     std::cout << "¬ведите вес груза: ";
     std::cin >> tmp.cargo.weight;
+    std::cin.ignore();
     std::cout << "¬ведите тип груза: ";
-    std::cin >> tmp.cargo.type;
+    getline(std::cin, tmp.cargo.type);
     std::cout << "¬ведите цену груза: ";
     std::cin >> tmp.cargo.price;
     std::cin.ignore();
@@ -157,8 +159,9 @@ void changeInformation(std::vector<Information>& a, int x, const std::string& fi
     Information tmp;
     std::cout << "¬ведите вес груза: ";
     std::cin >> tmp.cargo.weight;
+    std::cin.ignore();
     std::cout << "¬ведите тип груза: ";
-    std::cin >> tmp.cargo.type;
+    getline(std::cin, tmp.cargo.type);
     std::cout << "¬ведите цену груза: ";
     std::cin >> tmp.cargo.price;
     std::cin.ignore();
@@ -172,7 +175,7 @@ void changeInformation(std::vector<Information>& a, int x, const std::string& fi
     a.push_back(tmp);
     std::ofstream fout(filepath);
     for (auto& x : a) {
-        fout << toString(x) << "\n";
+        fout << toString(x);
     }
     std::cout << "«апись груза успешно создана.\n";
     system("pause");
@@ -196,7 +199,7 @@ void deleteInformation(std::vector<Information>& a, int x, const std::string& fi
 
 void findInformationByName(const std::vector<Information>& a) {
     std::string name;
-    std::cout << "\n ¬ведите название товара: ";
+    std::cout << "\n¬ведите название товара: ";
     std::cin >> name;
     std::for_each(a.begin(), a.end(), [name](Information s) {
         if (s.cargo.type == name) {
@@ -210,7 +213,7 @@ void findInformationByName(const std::vector<Information>& a) {
 
 void findInformationByTypeOfDelivering(const std::vector<Information>& a) {
     std::string type;
-    std::cout << "\n ¬ведите название товара: ";
+    std::cout << "\n¬ведите тип доставки: ";
     std::cin >> type;
     std::for_each(a.begin(), a.end(), [type](Information s) {
         if (s.type_of_delivering == type) {
