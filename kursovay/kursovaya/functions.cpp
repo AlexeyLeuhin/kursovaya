@@ -178,3 +178,18 @@ void changeInformation(std::vector<Information>& a, int x, const std::string& fi
     system("pause");
     fout.close();    
 }
+
+
+void deleteInformation(std::vector<Information>& a, int x, const std::string& filepath) {
+
+    // TODO: проверка на введенный индекс
+
+    a.erase(a.begin() + x);
+    std::ofstream fout(filepath);
+    for (auto& x : a) {
+        fout << toString(x) << "\n";
+    }
+    std::cout << "\nУдаление записи номер " << x << " завершено!\n";
+    system("pause");
+    fout.close();
+}

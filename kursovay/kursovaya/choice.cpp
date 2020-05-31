@@ -19,18 +19,23 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
   }
    break;
 
-  case 2: {
+  case 2: { // добавление записи
     appendObject(data, file_was_opened, path);
     break;
   }
    
-  case 3: {
+  case 3: { // редактирование записи
 
       int x;
-      std::cout << "¬ведите номер записи, которую хотите изменить: ";
+      std::cout << "\n¬ведите номер записи, которую хотите изменить: ";
       std::cin >> x;
       changeInformation(data, x, path);
       break;
+  }
+  case 4: { // удаление записи
+      int x;
+      std::cout << "\n¬ведите номер записи, котрую хотите удалить: ";
+      std::cin >> x;
   }
    
   case 5: {       // сортировка                                        
