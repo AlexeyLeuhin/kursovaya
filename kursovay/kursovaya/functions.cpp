@@ -93,7 +93,7 @@ void appendObject(std::vector<Information>& data, bool& file_was_opened, std::st
     getline(std::cin, tmp.cargo.comment);
     std::cout << "¬ведите тип доставки груза: ";
     std::cin >> tmp.type_of_delivering;
-    std::cout << "¬ведите рассто€ние доставки";
+    std::cout << "¬ведите рассто€ние доставки: ";
     std::cin >> tmp.distance;
     tmp.CountPrice();
     data.push_back(tmp);
@@ -166,7 +166,7 @@ void changeInformation(std::vector<Information>& a, int x, const std::string& fi
     getline(std::cin, tmp.cargo.comment);
     std::cout << "¬ведите тип доставки груза: ";
     std::cin >> tmp.type_of_delivering;
-    std::cout << "¬ведите рассто€ние доставки";
+    std::cout << "¬ведите рассто€ние доставки: ";
     std::cin >> tmp.distance;
     tmp.CountPrice();
     a.push_back(tmp);
@@ -192,4 +192,49 @@ void deleteInformation(std::vector<Information>& a, int x, const std::string& fi
     std::cout << "\n”даление записи номер " << x << " завершено!\n";
     system("pause");
     fout.close();
+}
+
+void findInformationByName(const std::vector<Information>& a) {
+    std::string name;
+    std::cout << "\n ¬ведите название товара: ";
+    std::cin >> name;
+    std::for_each(a.begin(), a.end(), [name](Information s) {
+        if (s.cargo.type == name) {
+            printTabled(s);
+        }
+
+        });
+    system("pause");
+  
+}
+
+void findInformationByTypeOfDelivering(const std::vector<Information>& a) {
+    std::string type;
+    std::cout << "\n ¬ведите название товара: ";
+    std::cin >> type;
+    std::for_each(a.begin(), a.end(), [type](Information s) {
+        if (s.type_of_delivering == type) {
+            printTabled(s);
+        }
+
+        });
+    system("pause");
+
+}
+
+
+void filtrationInformation(const std::vector<Information>& a) {
+    int lower_bound;
+    int upper_bound;
+    std::cout << "\n¬ведите нижнюю границу цены: ";
+    std::cin >> lower_bound;
+    std::cout << "¬ведите верхнюю границу цены: ";
+    std::cin >> upper_bound;
+    std::for_each(a.begin(), a.end(), [lower_bound, upper_bound](Information s) {
+        if (s.cargo.price <= upper_bound && s.cargo.price >= lower_bound) {
+            printTabled(s);
+        }
+
+        });
+    system("pause");
 }

@@ -36,6 +36,8 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
       int x;
       std::cout << "\nВведите номер записи, котрую хотите удалить: ";
       std::cin >> x;
+      deleteInformation(data, x, path);
+      break;
   }
    
   case 5: {       // сортировка                                        
@@ -79,6 +81,33 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
     
   }
         break;
+
+  case 7: {
+      int a;
+      std::cout << "\n1. Поиск товара по названию.\n";
+      std::cout << "2. Поиск данных по способу доставки.\n";
+      std::cout << "3. Фильтрация данных по цене товара.";
+      std::cout << "Выбирете пункт меню(1-3) >>> ";
+      std::cin >> a;
+      switch (a) {
+      case 1: {
+          findInformationByName(data);
+          break;
+      }
+      case 2: {
+          findInformationByTypeOfDelivering(data);
+          break;
+      }
+      case 3: {
+          filtrationInformation(data);
+          break;
+      }
+
+      default:
+          break;
+      }
+      break;
+  }
 
   case 8: {
     createManager();

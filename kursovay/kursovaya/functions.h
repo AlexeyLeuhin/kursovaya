@@ -13,3 +13,7 @@ void createManager();
 void sortDataByPrice(std::vector<Information>&);
 void sortDataByDistance(std::vector<Information>&);
 void changeInformation(std::vector<Information>& a, int x, const std::string& filepath);
+void deleteInformation(std::vector<Information>& a, int x, const std::string& filepath);
+void findInformationByName(const std::vector<Information>& a);
+void findInformationByTypeOfDelivering(const std::vector<Information>& a);
+void filtrationInformation(const std::vector<Information>& a);
