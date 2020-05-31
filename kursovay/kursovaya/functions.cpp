@@ -1,4 +1,5 @@
 #include "functions.h"
+
 void openFile(std::vector<Information>& data, std::string& filepath, bool& file_was_opened) {
   char r = ' ';
   data.clear();
@@ -53,6 +54,8 @@ void openFile(std::vector<Information>& data, std::string& filepath, bool& file_
   fin.close();
 }
 
+
+
 std::string toString(const Information& inf) {
   std::string result = "cargo: ";
   result += std::to_string(inf.cargo.weight);
@@ -85,8 +88,9 @@ void appendObject(std::vector<Information>& data, bool& file_was_opened, std::st
     std::cin >> tmp.cargo.type;
     std::cout << "¬ведите цену груза: ";
     std::cin >> tmp.cargo.price;
+    std::cin.ignore();
     std::cout << "¬ведите комментарий к грузу: ";
-    std::cin >> tmp.cargo.comment;
+    getline(std::cin, tmp.cargo.comment);
     std::cout << "¬ведите тип доставки груза: ";
     std::cin >> tmp.type_of_delivering;
     std::cout << "¬ведите рассто€ние доставки";
@@ -134,4 +138,43 @@ void createManager() {
     fout.close();
   }
   
+}
+
+
+void sortDataByPrice(std::vector<Information>& a) {
+    std::sort(a.begin(), a.end(), [](Information a, Information b) {return a.full_price > b.full_price; });
+}
+
+void sortDataByDistance(std::vector<Information>& a) {
+    std::sort(a.begin(), a.end(), [](Information a, Information b) {return a.distance > b.distance; });
+}
+
+void changeInformation(std::vector<Information>& a, int x, const std::string& filepath) {
+    printTabled(a[x]);
+    std::cout << "\n---------------------------------------\n";
+    std::cout << "¬ведите новые данные:\n";
+    a.erase(a.begin() + x);
+    Information tmp;
+    std::cout << "¬ведите вес груза: ";
+    std::cin >> tmp.cargo.weight;
+    std::cout << "¬ведите тип груза: ";
+    std::cin >> tmp.cargo.type;
+    std::cout << "¬ведите цену груза: ";
+    std::cin >> tmp.cargo.price;
+    std::cin.ignore();
+    std::cout << "¬ведите комментарий к грузу: ";
+    getline(std::cin, tmp.cargo.comment);
+    std::cout << "¬ведите тип доставки груза: ";
+    std::cin >> tmp.type_of_delivering;
+    std::cout << "¬ведите рассто€ние доставки";
+    std::cin >> tmp.distance;
+    tmp.CountPrice();
+    a.push_back(tmp);
+    std::ofstream fout(filepath);
+    for (auto& x : a) {
+        fout << toString(x) << "\n";
+    }
+    std::cout << "«апись груза успешно создана.\n";
+    system("pause");
+    fout.close();    
 }

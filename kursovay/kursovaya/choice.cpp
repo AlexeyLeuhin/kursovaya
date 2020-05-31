@@ -21,8 +21,39 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
 
   case 2: {
     appendObject(data, file_was_opened, path);
+    break;
   }
-   break;
+   
+  case 3: {
+
+      int x;
+      std::cout << "¬ведите номер записи, которую хотите изменить: ";
+      std::cin >> x;
+      changeInformation(data, x, path);
+      break;
+  }
+   
+  case 5: {       // сортировка                                        
+      int a;
+      std::cout << "1. —ортровка по полной стоимости доставки.\n";
+      std::cout << "2. —ортировка по рассто€нию до пункта назначени€.\n";
+      std::cout << "¬ыбирете пункт меню(1-2) >>> ";
+      std::cin >> a;
+      switch (a) {
+      case 1: {
+          sortDataByPrice(data);
+          break;
+      }
+      case 2: {
+          sortDataByDistance(data);
+          break;
+      }
+
+      default:
+          break;
+      }
+      break;
+  }
 
   case 6: {
     if (file_was_opened) {

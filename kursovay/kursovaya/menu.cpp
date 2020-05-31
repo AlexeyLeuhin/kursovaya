@@ -105,10 +105,10 @@ std::pair<MENU_TYPE, int> choose_menu_point(MENU_TYPE curr_type) {
 
     case MANAGER: {
       if (x >= 1 && x <= 7) {
-        return  std::make_pair(MANAGER, x);
+        return std::make_pair(MANAGER, x);
       }
       else if (x == 8) {
-        return  std::make_pair(MAIN, x);
+        return std::make_pair(MAIN, x);
       }
       else {
         throw - 2; //  выбран непраивльный пункт меню
@@ -131,9 +131,6 @@ std::pair<MENU_TYPE, int> choose_menu_point(MENU_TYPE curr_type) {
 
 
     default:
-      break;
-      
+      break;   
   }
-  
-
 }
