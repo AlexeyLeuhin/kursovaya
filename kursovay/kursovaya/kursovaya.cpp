@@ -5,6 +5,7 @@
 int main()
 {
   bool file_was_opened = false;
+  std::string filepath;
   setlocale(LC_ALL, "Russian");
   std::pair < MENU_TYPE, int> check;    // check  = (type of menu, point of menu)
   check.first = MENU_TYPE::MAIN;
@@ -33,10 +34,12 @@ int main()
     switch (check.first)
     {
     case MAIN:
-      continue;
+      filepath = "";
+      file_was_opened = false;
+      data.clear();
       break;
     case ADMIN:
-      data = admin_choice(data, check.second, file_was_opened);
+      admin_choice(data, check.second, file_was_opened, filepath);
       break;
     case MANAGER:
       break;

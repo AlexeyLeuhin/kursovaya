@@ -1,14 +1,13 @@
 #include "choice.h"
 
-std::vector<Information> admin_choice(std::vector<Information>& data, int x, bool& file_was_opened) {
+void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, std::string& path) {
 
   switch (x)
   {
   case 1: {
-    std::string path;
     std::cout << "Введите название файла: ";
     std::cin >> path;
-    data = openFile(path, file_was_opened);
+    openFile(data, path, file_was_opened);
     if (file_was_opened) {
       std::cout << "Файл был успешно открыт, а данные считаны.\n";
       system("pause");
@@ -17,13 +16,11 @@ std::vector<Information> admin_choice(std::vector<Information>& data, int x, boo
       std::cout << "Не удалось прочитать файл\n";
       system("pause");
     }
-    return data;
   }
    break;
 
   case 2: {
-    data = appendObject(data, file_was_opened);
-    return data;
+    appendObject(data, file_was_opened, path);
   }
    break;
 
@@ -44,9 +41,14 @@ std::vector<Information> admin_choice(std::vector<Information>& data, int x, boo
       system("pause");
     }
     
-    return data;
   }
         break;
+
+  case 8: {
+    createManager();
+    break;
+  }
+    break;
   default:
     break;
   }

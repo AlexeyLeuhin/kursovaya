@@ -1,14 +1,2 @@
-﻿  choice.cpp
-D:\infa\kursovaya\kursovay\kursovaya\Information.h(25,52): warning C4244: return: преобразование "double" в "int", возможна потеря данных
-  functions.cpp
-D:\infa\kursovaya\kursovay\kursovaya\Information.h(28,52): warning C4244: return: преобразование "double" в "int", возможна потеря данных
-D:\infa\kursovaya\kursovay\kursovaya\Information.h(25,52): warning C4244: return: преобразование "double" в "int", возможна потеря данных
-  kursovaya.cpp
-D:\infa\kursovaya\kursovay\kursovaya\Information.h(28,52): warning C4244: return: преобразование "double" в "int", возможна потеря данных
-D:\infa\kursovaya\kursovay\kursovaya\Information.h(25,52): warning C4244: return: преобразование "double" в "int", возможна потеря данных
-  menu.cpp
-  Создание кода...
-D:\infa\kursovaya\kursovay\kursovaya\Information.h(28,52): warning C4244: return: преобразование "double" в "int", возможна потеря данных
-D:\infa\kursovaya\kursovay\kursovaya\menu.cpp(139): warning C4715: choose_menu_point: значение возвращается не при всех путях выполнения
-D:\infa\kursovaya\kursovay\kursovaya\choice.cpp(53): warning C4715: admin_choice: значение возвращается не при всех путях выполнения
+﻿  functions.cpp
   kursovaya.vcxproj -> D:\infa\kursovaya\kursovay\Debug\kursovaya.exe

@@ -9,10 +9,10 @@
 
 
 struct Cargo {
-  double weight;
+  int weight;
   std::string type;
   std::string comment = "No comments to this cargo";
-  double price;
+  int price;
 };
 
 struct Information {

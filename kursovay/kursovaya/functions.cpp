@@ -1,14 +1,15 @@
 #include "functions.h"
-
-std::vector<Information> openFile(const std::string& filepath, bool& file_was_opened) {
+void openFile(std::vector<Information>& data, std::string& filepath, bool& file_was_opened) {
   char r = ' ';
-  std::vector<Information> res;
-  std::ifstream fin;
-  fin.open(filepath);
+  data.clear();
+  std::fstream fin(filepath, std::ios_base::in| std::ios_base::out| std::ios_base::app);
   std::string str;
   while (fin.good()) {
     file_was_opened = true;
     getline(fin, str);
+    if (str.empty()) {
+      break;
+    }
     Information inf;
 
     std::size_t pos = str.find(r);
@@ -46,11 +47,10 @@ std::vector<Information> openFile(const std::string& filepath, bool& file_was_op
 
     inf.full_price = inf.CountPrice();
 
-    res.push_back(inf);
+    data.push_back(inf);
     
   }
   fin.close();
-  return res;
 }
 
 std::string toString(const Information& inf) {
@@ -59,7 +59,7 @@ std::string toString(const Information& inf) {
   result += " " + inf.cargo.type + " ";
   result += std::to_string( inf.cargo.price);
   result += " " + inf.cargo.comment + "Gruz: ";
-  result += std::to_string(inf.distance) + inf.type_of_delivering;
+  result += std::to_string(inf.distance) + " " + inf.type_of_delivering + "\n";
   return result;
 }
 
@@ -72,12 +72,10 @@ void printTabled(const Information& inf) {
 }
 
 
-std::vector<Information> appendObject(const std::vector<Information>& data, bool& file_was_opened) {
-  std::vector<Information> answ = data;
+void appendObject(std::vector<Information>& data, bool& file_was_opened, std::string filepath) {
   if (!file_was_opened) {
     std::cout << "Чтобы добавить запись файл, сначла откройте файл\n";
     system("pause");
-    return data;
   }
   else {
     Information tmp;
@@ -91,9 +89,49 @@ std::vector<Information> appendObject(const std::vector<Information>& data, bool
     std::cin >> tmp.cargo.comment;
     std::cout << "Введите тип доставки груза: ";
     std::cin >> tmp.type_of_delivering;
-
+    std::cout << "Введите расстояние доставки";
+    std::cin >> tmp.distance;
     tmp.CountPrice();
-    answ.push_back(tmp);
-    return answ;
+    data.push_back(tmp);
+    std::ofstream fout(filepath, std::ios_base::app);
+    fout <<toString(tmp)<<"\n";
+    std::cout << "Запись груза успешно создана.\n";
+    system("pause");
+    fout.close();
   }
+}
+
+void createManager() {
+  char r = ' ';
+  std::string log, pass;  
+  std::vector<std::string> logs;
+  std::string str;
+  std::ifstream fin;
+  fin.open("managers.txt");
+  while (fin.good()) {
+    getline(fin, str);
+    std::size_t pos = str.find(r);
+    log = str.substr(0, pos);
+    logs.push_back(log);
+  }
+  fin.close();
+
+  std::cout << "Введите логин: ";
+  std::cin >> log;
+  std::cout << "Введите пароль: ";
+  std::cin >> pass;
+
+  if (std::find(logs.begin(),logs.end(),log)!=logs.end()) {
+    std::cout << "Менеджер с таким логином уже существует, придумайте другое имя.\n";
+    system("pause");
+    
+  }
+  else {
+    std::ofstream fout("managers.txt", std::ios_base::app);
+    fout << "\n" << log << " " << pass;
+    std::cout << "Запись менеджера успешно создана.\n";
+    system("pause");
+    fout.close();
+  }
+  
 }

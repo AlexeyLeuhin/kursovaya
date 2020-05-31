@@ -2,9 +2,11 @@
 #include <string>
 #include <vector>
 #include "Information.h"
+#include <iostream>
+#include <algorithm>
 
-
-std::vector<Information> openFile(const std::string& filepath, bool& file_was_opened);
+void openFile(std::vector<Information>& data, std::string& filepath, bool& file_was_opened);
 std::string toString(const Information& inf);
 void printTabled(const Information& inf);
-std::vector<Information> appendObject(const std::vector<Information>& data, bool& file_was_opened);
+void appendObject(std::vector<Information>& data, bool& file_was_opened, std::string filepath);
+void createManager();
