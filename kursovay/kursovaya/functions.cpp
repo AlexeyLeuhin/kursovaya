@@ -1,6 +1,7 @@
 #include "functions.h"
 
 void openFile(std::vector<Information>& data, std::string& filepath, bool& file_was_opened) {
+  file_was_opened = false;
   char r = ' ';
   data.clear();
   std::fstream fin(filepath, std::ios_base::in| std::ios_base::out| std::ios_base::app);
@@ -240,4 +241,42 @@ void filtrationInformation(const std::vector<Information>& a) {
 
         });
     system("pause");
+}
+
+void changeManager() {
+  char r = ' ';
+  std::ifstream fin;
+  std::map<std::string, std::string> log_pass;
+  std::string log, str, pass;
+  fin.open("managers.txt");
+  while (fin.good()) {
+    getline(fin, str);
+    std::size_t pos = str.find(r);
+    log = str.substr(0, pos);
+    pass = str.substr(pos, str.length() - log.length());
+    log_pass[log] = pass;
+  }
+  fin.close();
+  std::cout << "Список менеджеров и их паролей:\n";
+  for (auto x : log_pass) {
+    std::cout << x.first << " " << x.second << "\n";
+  }
+  std::cout << "Введите логин менеджера, учетную запись которого хотите изменить: ";
+  std::cin >> log;
+  auto it = log_pass.find(log);
+  if (it != log_pass.end()) {
+    log_pass.erase(it);
+    std::cout << "Введите новый логин для менеджера: ";
+    std::cin >> log;
+    std::cout << "Введите новый пароль для менеджера: ";
+    std::cin >> pass;
+    log_pass[log] = pass;
+    std::cout << "Данные учетной записи изменены.\n";
+    system("pause;=");
+  }
+  else {
+    std::cout << "Менеджера с таким логином не существует.\n";
+    system("pause");
+  }
+  
 }

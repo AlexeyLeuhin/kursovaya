@@ -4,6 +4,7 @@
 #include "Information.h"
 #include <iostream>
 #include <algorithm>
+#include <map>
 
 void openFile(std::vector<Information>& data, std::string& filepath, bool& file_was_opened);
 std::string toString(const Information& inf);
@@ -17,3 +18,4 @@ void deleteInformation(std::vector<Information>& a, int x, const std::string& fi
 void findInformationByName(const std::vector<Information>& a);
 void findInformationByTypeOfDelivering(const std::vector<Information>& a);
 void filtrationInformation(const std::vector<Information>& a);
+void changeManager();

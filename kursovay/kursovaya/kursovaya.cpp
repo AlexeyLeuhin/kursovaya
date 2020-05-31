@@ -43,8 +43,10 @@ int main()
       admin_choice(data, check.second, file_was_opened, filepath);
       break;
     case MANAGER:
+      manager_choice(data, check.second, file_was_opened, filepath);
       break;
     case USER:
+      user_choice(data, check.second, file_was_opened, filepath);
       break;
 
     default:
