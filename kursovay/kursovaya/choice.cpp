@@ -38,7 +38,7 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
         system("pause");
         break;
       }
-      changeInformation(data, x, path);
+      changeInformation(data, x, path, file_was_opened);
       break;
   }
   case 4: { // удаление записи
@@ -55,7 +55,7 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
         system("pause");
         break;
       }
-      deleteInformation(data, x, path);
+      deleteInformation(data, x, path, file_was_opened);
       break;
   }
    
@@ -131,15 +131,15 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
       }
       switch (a) {
       case 1: {
-          findInformationByName(data);
+          findInformationByName(data, file_was_opened);
           break;
       }
       case 2: {
-          findInformationByTypeOfDelivering(data);
+          findInformationByTypeOfDelivering(data, file_was_opened);
           break;
       }
       case 3: {
-          filtrationInformation(data);
+          filtrationInformation(data, file_was_opened);
           break;
       }
 
@@ -204,7 +204,7 @@ void manager_choice(std::vector<Information>& data, int x, bool& file_was_opened
       system("pause");
       break;
     }
-    changeInformation(data, x, path);
+    changeInformation(data, x, path, file_was_opened);
     break;
   }
   case 4: { // удаление записи
@@ -221,7 +221,7 @@ void manager_choice(std::vector<Information>& data, int x, bool& file_was_opened
       system("pause");
       break;
     }
-    deleteInformation(data, x, path);
+    deleteInformation(data, x, path, file_was_opened);
     break;
   }
 
@@ -297,15 +297,15 @@ void manager_choice(std::vector<Information>& data, int x, bool& file_was_opened
     }
     switch (a) {
     case 1: {
-      findInformationByName(data);
+      findInformationByName(data, file_was_opened);
       break;
     }
     case 2: {
-      findInformationByTypeOfDelivering(data);
+      findInformationByTypeOfDelivering(data, file_was_opened);
       break;
     }
     case 3: {
-      filtrationInformation(data);
+      filtrationInformation(data, file_was_opened);
       break;
     }
 
@@ -431,15 +431,15 @@ void user_choice(std::vector<Information>& data, int x, bool& file_was_opened, s
     }
     switch (a) {
     case 1: {
-      findInformationByName(data);
+      findInformationByName(data, file_was_opened);
       break;
     }
     case 2: {
-      findInformationByTypeOfDelivering(data);
+      findInformationByTypeOfDelivering(data, file_was_opened);
       break;
     }
     case 3: {
-      filtrationInformation(data);
+      filtrationInformation(data, file_was_opened);
       break;
     }
 
