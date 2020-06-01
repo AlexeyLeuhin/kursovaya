@@ -101,7 +101,7 @@ void appendObject(std::vector<Information>& data, bool& file_was_opened, std::st
     tmp.CountPrice();
     data.push_back(tmp);
     std::ofstream fout(filepath, std::ios_base::app);
-    fout <<toString(tmp)<<"\n";
+    fout <<toString(tmp);
     std::cout << "Запись груза успешно создана.\n";
     system("pause");
     fout.close();
@@ -272,11 +272,19 @@ void changeManager() {
     std::cin >> pass;
     log_pass[log] = pass;
     std::cout << "Данные учетной записи изменены.\n";
-    system("pause;=");
+    system("pause");
   }
   else {
     std::cout << "Менеджера с таким логином не существует.\n";
     system("pause");
   }
+  std::ofstream fout("managers.txt");
+  for (auto x : log_pass) {
+      fout << "\n" << x.first << " " << x.second;
+  }
+  std::cout << "Запись менеджера успешно создана.\n";
+  system("pause");
+  fout.close();
   
 }
+

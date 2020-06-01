@@ -21,11 +21,6 @@ struct Information {
   std::string type_of_delivering;
   int full_price;
   int CountPrice() {
-    if (type_of_delivering == "ship" || type_of_delivering == "Ship") {
       return distance * cargo.price * cargo.weight * 3;
-    }
-    else {
-      return distance * cargo.price * cargo.weight * 2;
-    }
   }
 };

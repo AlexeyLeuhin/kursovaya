@@ -167,6 +167,7 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
 
 
 void manager_choice(std::vector<Information>& data, int x, bool& file_was_opened, std::string& path) {
+    
   switch (x)
   {
   case 1: {   // открытие или создание файла

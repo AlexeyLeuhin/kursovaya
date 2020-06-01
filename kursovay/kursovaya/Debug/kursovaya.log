@@ -1,6 +1,4 @@
-﻿  choice.cpp
-D:\infa\kursovaya\kursovay\kursovaya\choice.cpp(36,13): warning C4018: >=: несоответствие типов со знаком и без знака
-D:\infa\kursovaya\kursovay\kursovaya\choice.cpp(53,13): warning C4018: >=: несоответствие типов со знаком и без знака
-D:\infa\kursovaya\kursovay\kursovaya\choice.cpp(201,11): warning C4018: >=: несоответствие типов со знаком и без знака
-D:\infa\kursovaya\kursovay\kursovaya\choice.cpp(218,11): warning C4018: >=: несоответствие типов со знаком и без знака
-  kursovaya.vcxproj -> D:\infa\kursovaya\kursovay\Debug\kursovaya.exe
+﻿  menu.cpp
+D:\Kursach_new\kursovaya\kursovay\kursovaya\menu.cpp(14,7): warning C4551: в вызове функции отсутствует список аргументов
+D:\Kursach_new\kursovaya\kursovay\kursovaya\menu.cpp(139): warning C4715: choose_menu_point: значение возвращается не при всех путях выполнения
+  kursovaya.vcxproj -> D:\Kursach_new\kursovaya\kursovay\Debug\kursovaya.exe

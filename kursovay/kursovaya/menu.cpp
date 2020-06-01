@@ -10,7 +10,10 @@ void draw_menu(MENU_TYPE type) {
     draw_admin_menu();
     break;
   case MANAGER:
-    draw_manager_menu();
+    if (checkingManager()) {
+      draw_manager_menu;
+    }
+    
     break;
   case USER:
     draw_user_menu();
@@ -133,4 +136,48 @@ std::pair<MENU_TYPE, int> choose_menu_point(MENU_TYPE curr_type) {
     default:
       break;   
   }
+}
+
+bool checkingManager() {
+    char r = ' ';
+    std::ifstream fin;
+    std::map<std::string, std::string> log_pass;
+    std::string log, str, pass;
+    fin.open("managers.txt");
+    while (fin.good()) {
+        getline(fin, str);
+        std::size_t pos = str.find(r);
+        log = str.substr(0, pos);
+        pass = str.substr(pos, str.length() - log.length());
+        log_pass[log] = pass;
+    }
+
+    fin.close();
+    std::cout << "\nВведте логин: ";
+    std::cin >> log;
+    auto it = log_pass.find(log);
+    if (it != log_pass.end()) {
+        while (true) {
+            std::cout << "Введите пароль: ";
+            std::cin >> pass;
+
+            if (log_pass[log] == pass) {
+                std::cout << "Добро пожаловать в систему, менеджер " << log << "!";
+                system("pause");
+                return 1;
+            }
+            else {
+                std::cout << "Неверный пароль!";
+                system("pause");
+            }
+        }
+
+    }
+    else {
+        std::cout << "Пользователься с таким логином не существует!";
+        system("pause");
+        return 0;
+    }
+
+
 }
