@@ -163,7 +163,7 @@ bool checkingManager() {
     }
 
     fin.close();
-    std::cout << "\nВведте логин: ";
+    std::cout << "\nВведите логин: ";
     std::cin >> log;
     auto it = log_pass.find(log);
     if (it != log_pass.end()) {
@@ -184,7 +184,7 @@ bool checkingManager() {
 
     }
     else {
-        std::cout << "Пользователься с таким логином не существует!\n";
+        std::cout << "Пользователья с таким логином не существует!\n";
         system("pause");
         return 0;
     }

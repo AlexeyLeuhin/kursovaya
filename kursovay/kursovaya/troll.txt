@@ -1,2 +1,0 @@
-cargo: 123 type2 1234 comment2Gruz: 123 type2
-

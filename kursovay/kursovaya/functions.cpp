@@ -72,7 +72,7 @@ void printTabled(const Information& inf) {
   std::cout << std::setw(10) << std::left << inf.cargo.weight
              <<"| "<< std::setw(12) <<inf.cargo.type<<"| "
               << std::setw(8) <<inf.cargo.price<<"| "
-              << std::setw(20) <<inf.cargo.comment<< "| "<< std::setw(11) <<inf.distance<<"| "
+              << std::setw(29) <<inf.cargo.comment<< "| "<< std::setw(11) <<inf.distance<<"| "
               << std::setw(15)<< inf.type_of_delivering <<"| "<< inf.full_price<<"\n";
 }
 
@@ -98,7 +98,7 @@ void appendObject(std::vector<Information>& data, bool& file_was_opened, std::st
     std::cin >> tmp.type_of_delivering;
     std::cout << "¬ведите рассто€ние доставки: ";
     std::cin >> tmp.distance;
-    tmp.CountPrice();
+    tmp.full_price = tmp.CountPrice();
     data.push_back(tmp);
     std::ofstream fout(filepath, std::ios_base::app);
     fout <<toString(tmp);
@@ -177,7 +177,7 @@ void changeInformation(std::vector<Information>& a, int x, const std::string& fi
     std::cin >> tmp.type_of_delivering;
     std::cout << "¬ведите рассто€ние доставки: ";
     std::cin >> tmp.distance;
-    tmp.CountPrice();
+    tmp.full_price = tmp.CountPrice();
     a.push_back(tmp);
     std::ofstream fout(filepath);
     for (auto& x : a) {
@@ -202,7 +202,7 @@ void deleteInformation(std::vector<Information>& a, int x, const std::string& fi
     a.erase(a.begin() + x);
     std::ofstream fout(filepath);
     for (auto& x : a) {
-      fout << toString(x) << "\n";
+      fout << toString(x);
     }
     std::cout << "\n”даление записи номер " << x << " завершено!\n";
     system("pause");
