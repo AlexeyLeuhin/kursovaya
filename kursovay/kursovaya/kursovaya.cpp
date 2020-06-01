@@ -10,9 +10,10 @@ int main()
   std::pair < MENU_TYPE, int> check;    // check  = (type of menu, point of menu)
   check.first = MENU_TYPE::MAIN;
   std::vector<Information> data;
+  bool authenticated = false;
 
   while (true) {
-    draw_menu(check.first);
+    draw_menu(check.first, authenticated);
      
     try {
       check = choose_menu_point(check.first);
@@ -38,6 +39,7 @@ int main()
       filepath = "";
       file_was_opened = false;
       data.clear();
+      authenticated = false;
       break;
     case ADMIN:
       admin_choice(data, check.second, file_was_opened, filepath);

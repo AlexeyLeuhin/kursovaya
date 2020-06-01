@@ -1,4 +1,5 @@
-﻿  menu.cpp
-D:\Kursach_new\kursovaya\kursovay\kursovaya\menu.cpp(14,7): warning C4551: в вызове функции отсутствует список аргументов
-D:\Kursach_new\kursovaya\kursovay\kursovaya\menu.cpp(139): warning C4715: choose_menu_point: значение возвращается не при всех путях выполнения
+﻿  kursovaya.cpp
+  menu.cpp
+  Создание кода...
+D:\Kursach_new\kursovaya\kursovay\kursovaya\menu.cpp(149): warning C4715: choose_menu_point: значение возвращается не при всех путях выполнения
   kursovaya.vcxproj -> D:\Kursach_new\kursovaya\kursovay\Debug\kursovaya.exe

@@ -96,7 +96,7 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
       std::cout << std::setw(11) << std::left << "Вес"
         << " " << std::setw(13) << "Тип" << " "
         << std::setw(9) << "Цена" << " "
-        << std::setw(21) << "Комментарий" << " " << std::setw(12) << "Расстояние" << " "<< std::setw(16) 
+        << std::setw(30) << "Комментарий" << " " << std::setw(12) << "Расстояние" << " "<< std::setw(16) 
         << "Тип доставки" <<" "<< "Полная цена груза" <<"\n";
 
       for (auto& inf : data) {

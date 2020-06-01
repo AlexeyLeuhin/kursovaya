@@ -1,6 +1,6 @@
 #include "menu.h"
 
-void draw_menu(MENU_TYPE type) {
+void draw_menu(MENU_TYPE& type, bool& authenticated) {
   switch (type)
   {
   case MAIN:
@@ -10,8 +10,18 @@ void draw_menu(MENU_TYPE type) {
     draw_admin_menu();
     break;
   case MANAGER:
-    if (checkingManager()) {
-      draw_manager_menu;
+    if (!authenticated) {
+      if (checkingManager()) {
+        draw_manager_menu();
+        authenticated = true;
+      }
+      else {
+        draw_main_menu();
+        type = MAIN;
+      }
+    }
+    else {
+      draw_manager_menu();
     }
     
     break;
@@ -148,7 +158,7 @@ bool checkingManager() {
         getline(fin, str);
         std::size_t pos = str.find(r);
         log = str.substr(0, pos);
-        pass = str.substr(pos, str.length() - log.length());
+        pass = str.substr(pos + 1, str.length() - log.length());
         log_pass[log] = pass;
     }
 
@@ -162,19 +172,19 @@ bool checkingManager() {
             std::cin >> pass;
 
             if (log_pass[log] == pass) {
-                std::cout << "Добро пожаловать в систему, менеджер " << log << "!";
+                std::cout << "Добро пожаловать в систему, менеджер " << log << "!\n";
                 system("pause");
                 return 1;
             }
             else {
-                std::cout << "Неверный пароль!";
+                std::cout << "Неверный пароль!\n";
                 system("pause");
             }
         }
 
     }
     else {
-        std::cout << "Пользователься с таким логином не существует!";
+        std::cout << "Пользователься с таким логином не существует!\n";
         system("pause");
         return 0;
     }

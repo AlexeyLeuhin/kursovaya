@@ -152,7 +152,12 @@ void sortDataByDistance(std::vector<Information>& a) {
     std::sort(a.begin(), a.end(), [](Information a, Information b) {return a.distance > b.distance; });
 }
 
-void changeInformation(std::vector<Information>& a, int x, const std::string& filepath) {
+void changeInformation(std::vector<Information>& a, int x, const std::string& filepath, bool& file_was_opened) {
+  if (!file_was_opened) {
+    std::cout << "Чтобы добавить запись файл, сначла откройте файл\n";
+    system("pause");
+  }
+  else {
     printTabled(a[x]);
     std::cout << "\n---------------------------------------\n";
     std::cout << "Введите новые данные:\n";
@@ -176,58 +181,86 @@ void changeInformation(std::vector<Information>& a, int x, const std::string& fi
     a.push_back(tmp);
     std::ofstream fout(filepath);
     for (auto& x : a) {
-        fout << toString(x);
+      fout << toString(x);
     }
     std::cout << "Запись груза успешно создана.\n";
     system("pause");
-    fout.close();    
+    fout.close();
+  }
+    
 }
 
 
-void deleteInformation(std::vector<Information>& a, int x, const std::string& filepath) {
+void deleteInformation(std::vector<Information>& a, int x, const std::string& filepath, bool& file_was_opened) {
 
     // TODO: проверка на введенный индекс
-
+  if (!file_was_opened) {
+    std::cout << "Чтобы добавить запись файл, сначла откройте файл\n";
+    system("pause");
+  }
+  else {
     a.erase(a.begin() + x);
     std::ofstream fout(filepath);
     for (auto& x : a) {
-        fout << toString(x) << "\n";
+      fout << toString(x) << "\n";
     }
     std::cout << "\nУдаление записи номер " << x << " завершено!\n";
     system("pause");
     fout.close();
+  }
+ 
 }
 
-void findInformationByName(const std::vector<Information>& a) {
+void findInformationByName(const std::vector<Information>& a, bool& file_was_opened) {
+  if (!file_was_opened) {
+    std::cout << "Чтобы добавить запись файл, сначла откройте файл\n";
+    system("pause");
+  }
+  else {
     std::string name;
     std::cout << "\nВведите название товара: ";
     std::cin >> name;
     std::for_each(a.begin(), a.end(), [name](Information s) {
-        if (s.cargo.type == name) {
-            printTabled(s);
-        }
+      if (s.cargo.type == name) {
+        printTabled(s);
+      }
 
-        });
+      });
     system("pause");
+  }
+  
   
 }
 
-void findInformationByTypeOfDelivering(const std::vector<Information>& a) {
+void findInformationByTypeOfDelivering(const std::vector<Information>& a, bool& file_was_opened) {
+  if (!file_was_opened) {
+    std::cout << "Чтобы добавить запись файл, сначла откройте файл\n";
+    system("pause");
+  }
+  else {
     std::string type;
     std::cout << "\nВведите тип доставки: ";
     std::cin >> type;
     std::for_each(a.begin(), a.end(), [type](Information s) {
-        if (s.type_of_delivering == type) {
-            printTabled(s);
-        }
+      if (s.type_of_delivering == type) {
+        printTabled(s);
+      }
 
-        });
+      });
     system("pause");
+  }
+  
 
 }
 
 
-void filtrationInformation(const std::vector<Information>& a) {
+void filtrationInformation(const std::vector<Information>& a, bool& file_was_opened) {
+
+  if (!file_was_opened) {
+    std::cout << "Чтобы добавить запись файл, сначла откройте файл\n";
+    system("pause");
+  }
+  else {
     int lower_bound;
     int upper_bound;
     std::cout << "\nВведите нижнюю границу цены: ";
@@ -235,12 +268,14 @@ void filtrationInformation(const std::vector<Information>& a) {
     std::cout << "Введите верхнюю границу цены: ";
     std::cin >> upper_bound;
     std::for_each(a.begin(), a.end(), [lower_bound, upper_bound](Information s) {
-        if (s.cargo.price <= upper_bound && s.cargo.price >= lower_bound) {
-            printTabled(s);
-        }
+      if (s.cargo.price <= upper_bound && s.cargo.price >= lower_bound) {
+        printTabled(s);
+      }
 
-        });
+      });
     system("pause");
+  }
+ 
 }
 
 void changeManager() {
@@ -253,7 +288,7 @@ void changeManager() {
     getline(fin, str);
     std::size_t pos = str.find(r);
     log = str.substr(0, pos);
-    pass = str.substr(pos, str.length() - log.length());
+    pass = str.substr(pos + 1, str.length() - log.length());
     log_pass[log] = pass;
   }
   fin.close();
@@ -282,7 +317,6 @@ void changeManager() {
   for (auto x : log_pass) {
       fout << "\n" << x.first << " " << x.second;
   }
-  std::cout << "Запись менеджера успешно создана.\n";
   system("pause");
   fout.close();
   
