@@ -1,6 +1,6 @@
 #include "choice.h"
 
-void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, std::string& path) {
+void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, std::string& path, std::string& pass) {
 
   switch (x)
   {
@@ -160,6 +160,14 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
     break;
   }
    break;
+
+  case 10: {
+    std::cout << "¬ведите новый пароль администратора: ";
+    std::cin >> pass;
+    std::cout << "ѕароль был успешно изменен.\n";
+    system("pause");
+  }
+         break;
   default:
     break;
   }

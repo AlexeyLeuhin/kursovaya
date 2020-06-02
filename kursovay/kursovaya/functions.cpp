@@ -94,7 +94,14 @@ void appendObject(std::vector<Information>& data, bool& file_was_opened, std::st
     std::cin >> tmp.cargo.price;
     std::cin.ignore();
     std::cout << "Введите комментарий к грузу: ";
-    getline(std::cin, tmp.cargo.comment);
+    std::string y;
+    getline(std::cin, y);
+    if (y.length() > 30) {
+      tmp.cargo.comment = y.substr(0, 29);
+    }
+    else {
+      tmp.cargo.comment = y;
+    }
     std::cout << "Введите тип доставки груза: ";
     std::cin >> tmp.type_of_delivering;
     std::cout << "Введите расстояние доставки: ";
@@ -173,7 +180,14 @@ void changeInformation(std::vector<Information>& a, int x, const std::string& fi
     std::cin >> tmp.cargo.price;
     std::cin.ignore();
     std::cout << "Введите комментарий к грузу: ";
-    getline(std::cin, tmp.cargo.comment);
+    std::string y;
+    getline(std::cin, y);
+    if (y.length() > 30) {
+      tmp.cargo.comment = y.substr(0, 29);
+    }
+    else {
+      tmp.cargo.comment = y;
+    }
     std::cout << "Введите тип доставки груза: ";
     std::cin >> tmp.type_of_delivering;
     std::cout << "Введите расстояние доставки: ";
@@ -220,6 +234,11 @@ void findInformationByName(const std::vector<Information>& a, bool& file_was_ope
     std::string name;
     std::cout << "\nВведите название товара: ";   //user enters parameter
     std::cin >> name;
+    std::cout << std::setw(11) << std::left << "Вес"
+      << " " << std::setw(13) << "Тип" << " "
+      << std::setw(9) << "Цена" << " "
+      << std::setw(30) << "Комментарий" << " " << std::setw(12) << "Расстояние" << " " << std::setw(16)
+      << "Тип доставки" << " " << "Полная цена груза" << "\n";
     std::for_each(a.begin(), a.end(), [name](Information s) {     //looks for object with such parameter
       if (s.cargo.type == name) {
         printTabled(s);
@@ -241,6 +260,11 @@ void findInformationByTypeOfDelivering(const std::vector<Information>& a, bool& 
     std::string type;
     std::cout << "\nВведите тип доставки: ";    //user enters parameter
     std::cin >> type;
+    std::cout << std::setw(11) << std::left << "Вес"
+      << " " << std::setw(13) << "Тип" << " "
+      << std::setw(9) << "Цена" << " "
+      << std::setw(30) << "Комментарий" << " " << std::setw(12) << "Расстояние" << " " << std::setw(16)
+      << "Тип доставки" << " " << "Полная цена груза" << "\n";
     std::for_each(a.begin(), a.end(), [type](Information s) {     //looks for object with such parameter
       if (s.type_of_delivering == type) {
         printTabled(s);
@@ -267,6 +291,11 @@ void filtrationInformation(const std::vector<Information>& a, bool& file_was_ope
     std::cin >> lower_bound;
     std::cout << "Введите верхнюю границу цены: ";
     std::cin >> upper_bound;
+    std::cout << std::setw(11) << std::left << "Вес"
+      << " " << std::setw(13) << "Тип" << " "
+      << std::setw(9) << "Цена" << " "
+      << std::setw(30) << "Комментарий" << " " << std::setw(12) << "Расстояние" << " " << std::setw(16)
+      << "Тип доставки" << " " << "Полная цена груза" << "\n";
     std::for_each(a.begin(), a.end(), [lower_bound, upper_bound](Information s) {   //goes throw all the buffer
       if (s.cargo.price <= upper_bound && s.cargo.price >= lower_bound) {   //and looks for appropriate objects
         printTabled(s);

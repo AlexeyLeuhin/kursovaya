@@ -70,7 +70,9 @@ void draw_admin_menu() {
   std::cout << "7. Поиск и фильтрация записей\n";
   std::cout << "8. Создание менеджера\n";
   std::cout << "9. Изменить логин/пароль менеджера\n";
-  std::cout << "10. Выйти в главное меню\n";
+  std::cout << "10. Изменить пароль администратора.\n";
+  std::cout << "11. Выйти в главное меню\n";
+  
 }
 
 void draw_manager_menu() {
@@ -93,7 +95,7 @@ void draw_user_menu() {
   std::cout << "4. Выйти в главное меню\n";
 }
 
-std::pair<MENU_TYPE, int> choose_menu_point(MENU_TYPE curr_type) {
+std::pair<MENU_TYPE, int> choose_menu_point(MENU_TYPE curr_type, std::string& pass) {
   int x;
   MENU_TYPE type;
   std::cout << "Введите пункт меню, который хотите выбрать: ";
@@ -121,10 +123,10 @@ std::pair<MENU_TYPE, int> choose_menu_point(MENU_TYPE curr_type) {
       break;
 
     case ADMIN: {
-      if (x >= 1 && x <= 9) {
+      if (x >= 1 && x <= 10) {
         return  std::make_pair(ADMIN, x);
       }
-      else if(x==10) {      //exit point
+      else if(x==11) {      //exit point
         return  std::make_pair(MAIN, x);
       }
       else {

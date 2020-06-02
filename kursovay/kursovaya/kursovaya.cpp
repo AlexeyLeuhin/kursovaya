@@ -1,12 +1,14 @@
 ﻿#include "menu.h"
 #include "choice.h"
-
+#include <windows.h>
 
 int main()
 {
   bool file_was_opened = false;
   std::string filepath;
   setlocale(LC_ALL, "Russian");
+  SetConsoleCP(1251);
+  SetConsoleOutputCP(1251);
   std::pair < MENU_TYPE, int> check;    // check  = (type of menu, point of menu)
   check.first = MENU_TYPE::MAIN;
   std::vector<Information> data;
@@ -21,7 +23,7 @@ int main()
     draw_menu(check.first, authenticated, admin_auth, admin_pass);    // takes type of menu and draws it
      
     try {
-      check = choose_menu_point(check.first);   //enables to choose menu point, throws exception if wrong point
+      check = choose_menu_point(check.first, admin_pass);   //enables to choose menu point, throws exception if wrong point
     }                                         //return pair (type of menu, point of menu)
     catch (int a) {
       if (a == -1) {    //was chosen exit point in main menu
@@ -48,7 +50,7 @@ int main()
       admin_auth = false;
       break;
     case ADMIN:
-      admin_choice(data, check.second, file_was_opened, filepath);
+      admin_choice(data, check.second, file_was_opened, filepath, admin_pass);
       break;
     case MANAGER:
       manager_choice(data, check.second, file_was_opened, filepath);
