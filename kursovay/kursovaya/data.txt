@@ -1,3 +1,2 @@
-cargo: 12 typeee 45 comment lul   Gruz: 123 plane 199260 
-cargo: 123 type 3 comment may be long   Gruz: 6 ship 6642 
-cargo: 12 type1 11 comment changed Gruz: 123 ship -858993460 
+cargo: 12 type1 11 comment changed  Gruz: 123 ship 48708 
+cargo: 123 yyyyu 132 hgjh Gruz: 4212 jhjk 205158096 

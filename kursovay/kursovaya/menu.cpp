@@ -1,13 +1,30 @@
 #include "menu.h"
 
-void draw_menu(MENU_TYPE& type, bool& authenticated) {
+void draw_menu(MENU_TYPE& type, bool& authenticated, bool& admin_auth, std::string admin_pass) {
   switch (type)
   {
   case MAIN:
     draw_main_menu();
     break;
   case ADMIN:
-    draw_admin_menu();
+    if (!admin_auth) {
+      std::cout << "Введите пароль администратора: ";
+      std::string tmp;
+      std::cin >> tmp;
+      if (tmp == admin_pass) {
+        admin_auth = true;
+        draw_admin_menu();
+      }
+      else {
+        std::cout << "Неверный пароль.\n";
+        system("pause");
+        draw_main_menu();
+        type = MAIN;
+      }
+    }
+    else {
+      draw_admin_menu();
+    }   
     break;
   case MANAGER:   // manager has to log in
     if (!authenticated) {
@@ -192,3 +209,4 @@ bool checkingManager() {
 
 
 }
+

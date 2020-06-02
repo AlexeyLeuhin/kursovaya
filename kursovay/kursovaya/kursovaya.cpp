@@ -11,9 +11,14 @@ int main()
   check.first = MENU_TYPE::MAIN;
   std::vector<Information> data;
   bool authenticated = false;
-
+  bool admin_auth = false;
+  std::string admin_pass;
+  std::cout << "Введите пароль администратора: ";
+  std::cin >> admin_pass;
+  system("pause");
+  system("cls");
   while (true) {   // main cicle
-    draw_menu(check.first, authenticated);    // takes type of menu and draws it
+    draw_menu(check.first, authenticated, admin_auth, admin_pass);    // takes type of menu and draws it
      
     try {
       check = choose_menu_point(check.first);   //enables to choose menu point, throws exception if wrong point
@@ -40,6 +45,7 @@ int main()
       file_was_opened = false;
       data.clear();
       authenticated = false;
+      admin_auth = false;
       break;
     case ADMIN:
       admin_choice(data, check.second, file_was_opened, filepath);
