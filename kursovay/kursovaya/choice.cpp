@@ -4,7 +4,7 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
 
   switch (x)
   {
-  case 1: {
+  case 1: {     //open file request
     std::cout << "Введите название файла: ";
     std::cin >> path;
     openFile(data, path, file_was_opened);
@@ -19,13 +19,13 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
   }
    break;
 
-  case 2: { // добавление записи
+  case 2: { // append object request
     appendObject(data, file_was_opened, path);
     break;
   }
    
-  case 3: { // редактирование записи
-    if (!file_was_opened) {
+  case 3: { // object changing request
+    if (!file_was_opened) {   // checks if file was opened
       std::cout << "Вы не открвали файл и не читали оттуда данные\n";
       system("pause");
       break;
@@ -33,7 +33,7 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
       int x;
       std::cout << "\nВведите номер записи, которую хотите изменить: ";
       std::cin >> x;
-      if (x >= data.size()) {
+      if (x >= data.size()) {   //checks if index is correct
         std::cout << "Запись с таким номер не существует.\n";
         system("pause");
         break;
@@ -41,7 +41,7 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
       changeInformation(data, x, path, file_was_opened);
       break;
   }
-  case 4: { // удаление записи
+  case 4: { // delete information request
     if (!file_was_opened) {
       std::cout << "Вы не открвали файл и не читали оттуда данные\n";
       system("pause");
@@ -59,18 +59,18 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
       break;
   }
    
-  case 5: {       // сортировка    
+  case 5: {       // sort request 
     if (!file_was_opened) {
       std::cout << "Вы не открвали файл и не читали оттуда данные\n";
       system("pause");
       break;
     }
-      int a;
+      int a;    //menu of sort types
       std::cout << "1. Сортровка по полной стоимости доставки.\n";
       std::cout << "2. Сортировка по расстоянию до пункта назначения.\n";
       std::cout << "Выбирете пункт меню(1-2) >>> ";
       std::cin >> a;
-      if (a != 1 && a != 2) {
+      if (a != 1 && a != 2) {   //check if point is correct
         std::cout << "Выбран неверный пункт меню\n";
         system("pause");
         break;
@@ -91,8 +91,8 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
       break;
   }
 
-  case 6: {
-    if (file_was_opened) {
+  case 6: {   //vizualization request
+    if (file_was_opened) {    //head of table is printed
       std::cout << std::setw(11) << std::left << "Вес"
         << " " << std::setw(13) << "Тип" << " "
         << std::setw(9) << "Цена" << " "
@@ -112,13 +112,13 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
   }
         break;
 
-  case 7: {
+  case 7: {   // filtration and search request
     if (!file_was_opened) {
       std::cout << "Вы не открвали файл и не читали оттуда данные\n";
       system("pause");
       break;
     }
-      int a;
+      int a;  //menu of filtration type
       std::cout << "\n1. Поиск товара по названию.\n";
       std::cout << "2. Поиск данных по способу доставки.\n";
       std::cout << "3. Фильтрация данных по цене товара.\n";
@@ -149,13 +149,13 @@ void admin_choice(std::vector<Information>& data, int x, bool& file_was_opened, 
       break;
   }
 
-  case 8: {
+  case 8: { //creating manager request
     createManager();
     break;
   }
     break;
 
-  case 9: {
+  case 9: {     //changing manager request
     changeManager();
     break;
   }
@@ -170,7 +170,7 @@ void manager_choice(std::vector<Information>& data, int x, bool& file_was_opened
     
   switch (x)
   {
-  case 1: {   // открытие или создание файла
+  case 1: {  //open file request
     std::cout << "Введите название файла: ";
     std::cin >> path;
     openFile(data, path, file_was_opened);
@@ -185,13 +185,13 @@ void manager_choice(std::vector<Information>& data, int x, bool& file_was_opened
   }
         break;
 
-  case 2: { // добавление записи
+  case 2: { // append object request
     appendObject(data, file_was_opened, path);
     break;
   }
 
-  case 3: { // редактирование записи
-    if (!file_was_opened) {
+  case 3: { // object changing request
+    if (!file_was_opened) {   // checks if file was opened
       std::cout << "Вы не открвали файл и не читали оттуда данные\n";
       system("pause");
       break;
@@ -199,7 +199,7 @@ void manager_choice(std::vector<Information>& data, int x, bool& file_was_opened
     int x;
     std::cout << "\nВведите номер записи, которую хотите изменить: ";
     std::cin >> x;
-    if (x >= data.size()) {
+    if (x >= data.size()) {   //checks if index is correct
       std::cout << "Запись с таким номер не существует.\n";
       system("pause");
       break;
@@ -225,18 +225,18 @@ void manager_choice(std::vector<Information>& data, int x, bool& file_was_opened
     break;
   }
 
-  case 5: {       // сортировка    
+  case 5: {       // sort request 
     if (!file_was_opened) {
       std::cout << "Вы не открвали файл и не читали оттуда данные\n";
       system("pause");
       break;
     }
-    int a;
+    int a;    //menu of sort types
     std::cout << "1. Сортровка по полной стоимости доставки.\n";
     std::cout << "2. Сортировка по расстоянию до пункта назначения.\n";
     std::cout << "Выбирете пункт меню(1-2) >>> ";
     std::cin >> a;
-    if (a != 1 && a != 2) {
+    if (a != 1 && a != 2) {   //check if point is correct
       std::cout << "Выбран неверный пункт меню\n";
       system("pause");
       break;
@@ -257,12 +257,12 @@ void manager_choice(std::vector<Information>& data, int x, bool& file_was_opened
     break;
   }
 
-  case 6: { //просмотр данных в табличной форме
-    if (file_was_opened) {
+  case 6: {   //vizualization request
+    if (file_was_opened) {    //head of table is printed
       std::cout << std::setw(11) << std::left << "Вес"
         << " " << std::setw(13) << "Тип" << " "
         << std::setw(9) << "Цена" << " "
-        << std::setw(21) << "Комментарий" << " " << std::setw(12) << "Расстояние" << " " << std::setw(16)
+        << std::setw(30) << "Комментарий" << " " << std::setw(12) << "Расстояние" << " " << std::setw(16)
         << "Тип доставки" << " " << "Полная цена груза" << "\n";
 
       for (auto& inf : data) {
@@ -278,13 +278,13 @@ void manager_choice(std::vector<Information>& data, int x, bool& file_was_opened
   }
         break;
 
-  case 7: {   // поиск и фильтрация данных
+  case 7: {   // filtration and search request
     if (!file_was_opened) {
       std::cout << "Вы не открвали файл и не читали оттуда данные\n";
       system("pause");
       break;
     }
-    int a;
+    int a;  //menu of filtration type
     std::cout << "\n1. Поиск товара по названию.\n";
     std::cout << "2. Поиск данных по способу доставки.\n";
     std::cout << "3. Фильтрация данных по цене товара.\n";
@@ -324,7 +324,7 @@ void manager_choice(std::vector<Information>& data, int x, bool& file_was_opened
 void user_choice(std::vector<Information>& data, int x, bool& file_was_opened, std::string& path) {
   switch (x)
   {
-  case 1: {
+  case 1: {   //open file request
     file_was_opened = false;
     std::cout << "Введите название файла: ";
     std::cin >> path;
@@ -391,7 +391,7 @@ void user_choice(std::vector<Information>& data, int x, bool& file_was_opened, s
   }
         break;
 
-  case 2: {
+  case 2: {   // vizualization request
     if (file_was_opened) {
       std::cout << std::setw(11) << std::left << "Вес"
         << " " << std::setw(13) << "Тип" << " "
@@ -412,7 +412,7 @@ void user_choice(std::vector<Information>& data, int x, bool& file_was_opened, s
   }
         break;
 
-  case 3: {
+  case 3: { //filtration and search request
     if (!file_was_opened) {
       std::cout << "Вы не открвали файл и не читали оттуда данные\n";
       system("pause");

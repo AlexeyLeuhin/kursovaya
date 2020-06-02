@@ -9,9 +9,9 @@ void draw_menu(MENU_TYPE& type, bool& authenticated) {
   case ADMIN:
     draw_admin_menu();
     break;
-  case MANAGER:
+  case MANAGER:   // manager has to log in
     if (!authenticated) {
-      if (checkingManager()) {
+      if (checkingManager()) {    //checks if manager logged in
         draw_manager_menu();
         authenticated = true;
       }
@@ -82,7 +82,7 @@ std::pair<MENU_TYPE, int> choose_menu_point(MENU_TYPE curr_type) {
   std::cout << "Введите пункт меню, который хотите выбрать: ";
   std::cin >> x;
 
-  switch (curr_type) {
+  switch (curr_type) {      //check if was chosen correct point
     case MAIN: {
       switch (x) {
       case 1:
@@ -96,7 +96,7 @@ std::pair<MENU_TYPE, int> choose_menu_point(MENU_TYPE curr_type) {
         break;
       default:
         std::cout << "Завершение программы";
-        throw - 1;      //завершение программы
+        throw - 1;      //exit from programm
         break;
       }  
       return std::make_pair(type, -1);
@@ -107,11 +107,11 @@ std::pair<MENU_TYPE, int> choose_menu_point(MENU_TYPE curr_type) {
       if (x >= 1 && x <= 9) {
         return  std::make_pair(ADMIN, x);
       }
-      else if(x==10) {
+      else if(x==10) {      //exit point
         return  std::make_pair(MAIN, x);
       }
       else {
-        throw - 2; //  выбран непраивльный пункт меню
+        throw - 2; //  incorrect point of menu was chosen
       }
     }
       break;
@@ -120,11 +120,11 @@ std::pair<MENU_TYPE, int> choose_menu_point(MENU_TYPE curr_type) {
       if (x >= 1 && x <= 7) {
         return std::make_pair(MANAGER, x);
       }
-      else if (x == 8) {
+      else if (x == 8) {    //exit point
         return std::make_pair(MAIN, x);
       }
       else {
-        throw - 2; //  выбран непраивльный пункт меню
+        throw - 2; //  incorrect point of menu was chosen
       }
     }
       break;
@@ -133,11 +133,11 @@ std::pair<MENU_TYPE, int> choose_menu_point(MENU_TYPE curr_type) {
       if (x >= 1 && x <= 3) {
         return  std::make_pair(USER, x);
       }
-      else if (x == 4) {
+      else if (x == 4) { // exit point
         return  std::make_pair(MAIN, x);
       }
       else {
-        throw - 2; //  выбран непраивльный пункт меню
+        throw - 2; //  incorrect point of menu was chosen
       }
     }
        break;
@@ -148,25 +148,26 @@ std::pair<MENU_TYPE, int> choose_menu_point(MENU_TYPE curr_type) {
   }
 }
 
+//checks authentication of manager
 bool checkingManager() {
     char r = ' ';
     std::ifstream fin;
-    std::map<std::string, std::string> log_pass;
+    std::map<std::string, std::string> log_pass;    //stores all accounts
     std::string log, str, pass;
-    fin.open("managers.txt");
-    while (fin.good()) {
+    fin.open("managers.txt"); 
+    while (fin.good()) {      //read accounts from file
         getline(fin, str);
         std::size_t pos = str.find(r);
         log = str.substr(0, pos);
         pass = str.substr(pos + 1, str.length() - log.length());
         log_pass[log] = pass;
     }
-
     fin.close();
-    std::cout << "\nВведите логин: ";
+
+    std::cout << "\nВведите логин: ";     //user enters login and password
     std::cin >> log;
     auto it = log_pass.find(log);
-    if (it != log_pass.end()) {
+    if (it != log_pass.end()) {     //checks if they are correct
         while (true) {
             std::cout << "Введите пароль: ";
             std::cin >> pass;
@@ -183,7 +184,7 @@ bool checkingManager() {
         }
 
     }
-    else {
+    else {      //error
         std::cout << "Пользователья с таким логином не существует!\n";
         system("pause");
         return 0;

@@ -12,14 +12,14 @@ int main()
   std::vector<Information> data;
   bool authenticated = false;
 
-  while (true) {
-    draw_menu(check.first, authenticated);
+  while (true) {   // main cicle
+    draw_menu(check.first, authenticated);    // takes type of menu and draws it
      
     try {
-      check = choose_menu_point(check.first);
-    }
+      check = choose_menu_point(check.first);   //enables to choose menu point, throws exception if wrong point
+    }                                         //return pair (type of menu, point of menu)
     catch (int a) {
-      if (a == -1) {    //был выбран "выход" в главном меню
+      if (a == -1) {    //was chosen exit point in main menu
         return 0;
       }
       if (a == -2) {
@@ -29,13 +29,13 @@ int main()
       }  
     }
 
-    if (check.second == -1) {        // мы находились в главном меню, пункты далее впроверять не нужно
+    if (check.second == -1) {        // dont need to check points of main menu 
       continue;
     }
 
-    switch (check.first)
+    switch (check.first)      //realiztion of chosen point
     {
-    case MAIN:
+    case MAIN:      //after we quit to main menu program should clear its buffer
       filepath = "";
       file_was_opened = false;
       data.clear();
